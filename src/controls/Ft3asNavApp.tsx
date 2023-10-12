@@ -23,21 +23,20 @@ export default function Ft3asNavApp() {
 
     const navLinkGroups: INavLinkGroup[] = [
         {
-            links: [
+            links: [                
                 {
-                    name: 'Home',
+                    name: 'AzChecklist',
                     url: '/',
+                    icon: 'CheckList',
+                    key: 'key1',
+                },
+                {
+                    name: 'About',
+                    url: '/about',
                     icon: 'Home',
                     expandAriaLabel: 'Home',
                     collapseAriaLabel: 'Home',
                 },
-                {
-                    name: 'Azure Design Review',
-                    url: 'checklist',
-                    icon: 'CheckList',
-                    key: 'key1',
-
-                }
             ],
         },
     ];
@@ -50,7 +49,7 @@ export default function Ft3asNavApp() {
                     <Stack.Item>
                         <Nav
                             onLinkClick={_onLinkClick}
-                            selectedKey="key3"
+                            selectedKey="key1"
                             ariaLabel="AzChecklist"
                             groups={navLinkGroups}
                             onRenderLink={(link) => link ? (<Link to={link.url}>{link.name}</Link>) : <></>}
@@ -58,8 +57,8 @@ export default function Ft3asNavApp() {
                     </Stack.Item>
                     <Stack.Item grow>
                         <Switch>
-                            <Route path="/checklist" component={Ft3asApp} />
-                            <Route path="/" component={Ft3asHome} />
+                            <Route exact path="/" component={Ft3asApp} />
+                            <Route path="/about" component={Ft3asHome} />
                         </Switch>
                     </Stack.Item>
                 </Stack>

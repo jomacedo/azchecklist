@@ -26,7 +26,7 @@ export default function Ft3asHome() {
                 <Stack.Item>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <CompoundButton primary secondaryText="Start now!" onClick={()=>{
-                            history.push("/checklist");
+                            history.push("/");
                         }}>
                             Azure Design Review
                         </CompoundButton>

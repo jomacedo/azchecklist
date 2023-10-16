@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@fluentui/react": "^8.0.0",
-    "@microsoft/applicationinsights-react-js": "^3.0.0",
+    "@microsoft/applicationinsights-react-js": "^17.0.1",
     "@microsoft/applicationinsights-web": "^2.7.4",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

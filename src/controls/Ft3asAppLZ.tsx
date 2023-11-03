@@ -1,6 +1,6 @@
 import { FocusZone, IStackStyles, IStackTokens, Pivot, PivotItem, Stack, Text, IDropdownOption } from "@fluentui/react";
 import { ICheckItemAnswered } from "../model/ICheckItem";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ICategory, IChecklistDocument } from "../model/IChecklistDocument";
 import TemplateServiceInstance from "../service/TemplateService";
 import { Ft3asChecklist } from "./Ft3asChecklistLZ";
@@ -46,36 +46,7 @@ export default function Ft3asApp() {
         }
     });
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await changeTemplate('https://raw.githubusercontent.com/Azure/review-checklists/main/checklists/aks_checklist.en.json');
-        }
-        fetchData()
-            .then(() => console.log('loaded'))
-            .catch(reason => {
-                console.error(reason);
-            })
-    }, []);
-
-    const onTemplateSelected = async (templateUrl?: string) => {
-        if (templateUrl) {
-            try {
-                await changeTemplate(templateUrl);
-            }
-            catch (reason) {
-                console.log(reason);
-            }
-        }
-
-        setShowSelectTemplate(false);
-    }
-
-    const changeTemplate = async (templateUrl: string) => {
-        const doc = await TemplateServiceInstance.openTemplate(templateUrl);
-        updateDocument(doc);
-    }
-
-    const updateDocument = (doc: IChecklistDocument) => {
+    const updateDocument = useCallback((doc: IChecklistDocument) => {
         setChecklistDoc({
             ...doc,
             items: doc.items.map<ICheckItemAnswered>((i: ICheckItemAnswered) => {
@@ -90,6 +61,35 @@ export default function Ft3asApp() {
         setVisibleSeverities(doc.severities);
         setIsModified(false);
         setVisibleStatuses(doc.status);
+    }, [setChecklistDoc, setVisibleCategories, setVisibleSeverities, setIsModified, setVisibleStatuses]);
+
+    const changeTemplate = useCallback(async (templateUrl: string) => {
+        const doc = await TemplateServiceInstance.openTemplate(templateUrl);
+        updateDocument(doc);
+    }, [updateDocument]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await changeTemplate('https://raw.githubusercontent.com/Azure/review-checklists/main/checklists/aks_checklist.en.json');
+        }
+        fetchData()
+            .then(() => console.log('loaded'))
+            .catch(reason => {
+                console.error(reason);
+            })
+    }, [changeTemplate]);
+
+    const onTemplateSelected = async (templateUrl?: string) => {
+        if (templateUrl) {
+            try {
+                await changeTemplate(templateUrl);
+            }
+            catch (reason) {
+                console.log(reason);
+            }
+        }
+
+        setShowSelectTemplate(false);
     }
 
     const downloadFile = () => {

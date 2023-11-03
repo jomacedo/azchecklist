@@ -35,7 +35,7 @@ export default function Ft3AsTemplateSelector(props: Ft3AsTemplateSelectorProps)
     const [selectedTechItem, setSelectedTechItem] = useState<IDropdownOption>();
     const [selectedLanguageItem, setSelectedLanguageItem] = useState<IDropdownOption>();
 
-    const onOk = () => {
+    const onOk = useCallback(() => {
         if (selectedLanguageItem && selectedTechItem){
             console.log(selectedTechItem.text);
             console.log(selectedLanguageItem.text);
@@ -44,7 +44,7 @@ export default function Ft3AsTemplateSelector(props: Ft3AsTemplateSelectorProps)
             props.onTemplateSelected(url);
         }
         // props.onClose();
-    }
+    }, [selectedLanguageItem, selectedTechItem, props]);
 
     const onRenderFooterContent = useCallback(
         () => (

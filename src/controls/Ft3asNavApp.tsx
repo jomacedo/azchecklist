@@ -2,8 +2,9 @@ import { INavLink, INavLinkGroup, Nav, Stack } from "@fluentui/react";
 import { BrowserRouter, Link, Route, Switch, useHistory } from "react-router-dom";
 import TelemetryProvider from "../service/telemetry-provider";
 import { getAppInsights } from "../service/TelemetryService";
-import Ft3asApp from "./Ft3asApp";
+import Ft3asAppLZ from "./Ft3asAppLZ";
 import Ft3asHome from "./Ft3asHome";
+import Ft3asAppWAF from "./Ft3asAppWAF";
 
 
 
@@ -26,6 +27,12 @@ export default function Ft3asNavApp() {
             links: [                
                 {
                     name: 'AzChecklist',
+                    url: '/',
+                    icon: 'CheckList',
+                    key: 'key1',
+                },               
+                {
+                    name: 'LZ Review',
                     url: '/',
                     icon: 'CheckList',
                     key: 'key1',
@@ -57,7 +64,8 @@ export default function Ft3asNavApp() {
                     </Stack.Item>
                     <Stack.Item grow>
                         <Switch>
-                            <Route exact path="/" component={Ft3asApp} />
+                            <Route exact path="/" component={Ft3asAppWAF} />
+                            <Route exact path="/LZ" component={Ft3asAppLZ} />
                             <Route path="/about" component={Ft3asHome} />
                         </Switch>
                     </Stack.Item>

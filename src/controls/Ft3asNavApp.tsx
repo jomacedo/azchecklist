@@ -33,7 +33,7 @@ export default function Ft3asNavApp() {
                 },               
                 {
                     name: 'LZ Review',
-                    url: '/',
+                    url: '/LZ',
                     icon: 'CheckList',
                     key: 'key1',
                 },

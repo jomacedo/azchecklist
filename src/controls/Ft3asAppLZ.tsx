@@ -70,7 +70,7 @@ export default function Ft3asApp() {
 
     useEffect(() => {
         const fetchData = async () => {
-            await changeTemplate('https://raw.githubusercontent.com/Azure/review-checklists/main/checklists/aks_checklist.en.json');
+            await changeTemplate('https://raw.githubusercontent.com/Azure/review-checklists/main/checklists/alz_checklist.en.json');
         }
         fetchData()
             .then(() => console.log('loaded'))

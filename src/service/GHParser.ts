@@ -27,6 +27,8 @@ class GHParser {
     }
 
     findTechnology(element : string) : string {
+        let slash = element.lastIndexOf("/");
+        element = element.slice(slash+1, element.length);
         let index = element.lastIndexOf("_");
         return element.slice(0, index);
     }

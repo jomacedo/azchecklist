@@ -6,7 +6,7 @@
     "@fluentui/react": "^8.0.0",
     "@microsoft/applicationinsights-react-js": "^3.0.0",
     "@microsoft/applicationinsights-web": "^2.7.4",
-    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.5",
